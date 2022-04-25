@@ -1,4 +1,4 @@
-package cool.byr.gt.user
+package cool.byr.gt.user.app
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
