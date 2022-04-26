@@ -14,14 +14,18 @@ class EmojiNumberNameImpl: EmojiNumberNameAbility {
     )
 
     private val numTag = "#"
+    private val zero = "0"
+    private val interval = (0..99999)
 
     override fun single(): String {
         val sb = StringBuilder()
         sb.append(emojiList[emojiList.indices.random()])
         sb.append(numTag)
-        for (i in 0..4) {
-            sb.append((0..9).random())
+        val num = interval.random().toString()
+        for (i in 0 until (5 - num.length)) {
+            sb.append(zero)
         }
+        sb.append(num)
         return sb.toString()
     }
 

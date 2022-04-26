@@ -9,15 +9,15 @@ class EmojiNumberNameTest {
     private val test = EmojiNumberNameImpl()
 
     @Test
-    fun testOnce() {
+    fun singleTest() {
         print(test.single())
     }
 
     @Test
     fun batchTest() {
-        print(test.batch(1))
-        print(test.batch(5))
-        print(test.batch(0))
-        print(test.batch(-1))
+        println(test.batch(1))
+        println(test.batch(50))
+        println(test.batch(0))
+        println(test.batch(-1))
     }
 }
