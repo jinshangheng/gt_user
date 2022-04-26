@@ -10,7 +10,8 @@ import java.util.concurrent.CopyOnWriteArraySet
 import javax.annotation.Resource
 
 /**
- * 全内存缓存实现
+ * 全内存缓存实现。
+ * 考虑到内存空间有限，需要向Redis改变。
  */
 @Component
 class UserCacheImpl: UserCacheAbility {
