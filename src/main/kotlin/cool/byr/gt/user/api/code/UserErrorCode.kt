@@ -15,5 +15,15 @@ enum class UserErrorCode(
         "CLOSE_TO_NEW",
         "停止新用户注册/游客访问",
         "熔断机制，同时也方便不停机更新。"
+    ),
+    ILLEGAL_NAME(
+        "ILLEGAL_NAME",
+        "不合法的用户名！",
+        "用于接口保护，过滤明确不合法的携带用户名的请求"
+    ),
+    DUPLICATE(
+        "DUPLICATE",
+        "服务器错误！",
+        "服务器错误，唯一情况是姓名重复，但是用户不需要对此有感知"
     )
 }

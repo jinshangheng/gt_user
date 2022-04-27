@@ -1,7 +1,6 @@
 package cool.byr.gt.user.util
 
 import io.jsonwebtoken.*
-import io.jsonwebtoken.impl.compression.DeflateCompressionCodec
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.*
