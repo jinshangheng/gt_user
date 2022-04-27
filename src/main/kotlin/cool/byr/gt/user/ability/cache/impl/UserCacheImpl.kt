@@ -51,7 +51,7 @@ class UserCacheImpl: UserCacheAbility {
     }
 
     /**
-     * 对增加一个BO的声明
+     * 对增加一个BO的同步
      */
     private fun sync(userBO: UserBO): Boolean {
         return if (nameSet.add(userBO.name)) {
