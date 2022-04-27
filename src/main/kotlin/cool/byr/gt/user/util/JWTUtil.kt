@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class JWTUtil {
+final class JWTUtil {
     @Value("{jwt.secretKey}")
-    private lateinit var secretKey: String
+    lateinit var secretKey: String
 
     fun createJWT(id: String, subject: String, ttl: Long, map: Map<String, Any>): String {
         val builder: JwtBuilder = Jwts.builder()
@@ -18,7 +18,7 @@ class JWTUtil {
             .signWith(SignatureAlgorithm.HS256, secretKey)
             .compressWith(CompressionCodecs.DEFLATE)
         if (map.isNotEmpty()) {
-            builder.setClaims(map)
+            builder.addClaims(map)
         }
         if (ttl > 0) {
             builder.setExpiration(Date(System.currentTimeMillis() + ttl))
@@ -29,7 +29,7 @@ class JWTUtil {
     fun parseJWT(jwtString: String): Claims {
         return Jwts.parser()
             .setSigningKey(secretKey)
-            .parseClaimsJwt(jwtString)
+            .parseClaimsJws(jwtString)
             .body
     }
 }
