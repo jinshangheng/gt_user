@@ -17,6 +17,9 @@ class CreditCacheImpl: CreditCacheAbility {
     @Resource
     lateinit var creditDAO: CreditDAO
 
+    /**
+     * Map<userId, bo>
+     */
     private val db: MutableMap<Long, CreditBO> = ConcurrentHashMap(64)
 
     private fun init() {
@@ -46,15 +49,29 @@ class CreditCacheImpl: CreditCacheAbility {
         return true
     }
 
-    override fun updateCreditByUserId(delta: Long, userId: Long) {
-        TODO("Not yet implemented")
+    override fun updateCreditByUserId(delta: Long, userId: Long): Boolean {
+        return syncUpdateCredit(delta, userId)
     }
 
-    override fun batchUpdateCreditByUserId(map: Map<Long, Long>) {
-        TODO("Not yet implemented")
+    override fun batchUpdateCreditByUserId(map: Map<Long, Long>): Int {
+        var count = 0
+        map.forEach { (id, delta) ->
+            if (syncUpdateCredit(delta, id)) {
+                count++
+            }
+        }
+        return count
+    }
+
+    override fun queryCreditByUserId(userId: Long): CreditBO? {
+        return db[userId]
+    }
+
+    override fun createNewCredit(creditBO: CreditBO): Boolean {
+        return syncCreate(creditBO)
     }
 
     override fun afterPropertiesSet() {
-        TODO("Not yet implemented")
+        init()
     }
 }
